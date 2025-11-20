@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Models and large files
+models/*.pkl
+checkpoints/*.pkl
+*.h5
+*.model
+*.weights
+
+# Data
+data/
+*.zip
+*.tar.gz
+
+# VS Code
+.vscode/
+.vs/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Demo images (optional, remove if you want to include them)
+demo/
+
+# Python cache
+*.pyc
+__pycache__/
