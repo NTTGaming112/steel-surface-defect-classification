@@ -166,10 +166,6 @@ Sử dụng **Optuna** với:
 - Tất cả models sử dụng StandardScaler
 - SIFT extractor được save để inference
 
-## 👨‍💻 Author
-
-Computer Vision Project - Steel Surface Defect Detection
-
 ## 📄 License
 
 MIT License
