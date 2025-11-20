@@ -94,40 +94,6 @@ python app.py
 
 Truy cập: http://127.0.0.1:7860
 
-## 📁 Cấu trúc thư mục
-
-```
-project/
-├── app.py                              # Gradio web interface
-├── utils.py                            # Shared utility functions
-├── cv-project.ipynb                    # SVM notebook
-├── cv-project-decisiontree.ipynb       # Decision Tree notebook
-├── cv-project-knn.ipynb                # KNN notebook
-├── eda.ipynb                           # Exploratory Data Analysis
-├── models/                             # Trained models (*.pkl not included in git)
-│   ├── best_svm_ALL.pkl               # Best SVM model (SIFT+LBP)
-│   ├── best_svm_LBP.pkl               # SVM model (LBP only)
-│   ├── best_svm_SIFT.pkl              # SVM model (SIFT only)
-│   ├── best_dt_ALL.pkl                # Best Decision Tree model
-│   ├── best_knn_ALL.pkl               # Best KNN model
-│   ├── sift_extractor.pkl             # SIFT BoVW extractor
-│   ├── scaler_sift_lbp.pkl            # StandardScaler for combined features
-│   └── metadata_*.json                # Model metadata files
-├── checkpoints/                        # Optuna studies (*.pkl not included in git)
-│   ├── study_ALL.pkl                  # SVM optimization study
-│   ├── study_dt_ALL.pkl               # Decision Tree study
-│   └── study_knn_ALL.pkl              # KNN study
-├── demo/                               # Demo images (optional)
-└── archive/                            # Dataset (not included in git)
-    └── NEU-DET/
-        ├── train/
-        │   ├── images/                # Training images
-        │   └── annotations/           # XML annotations
-        └── validation/
-            ├── images/                # Validation images
-            └── annotations/           # XML annotations
-```
-
 ## 🎨 Web Interface Features
 
 - 📤 Upload ảnh defect
