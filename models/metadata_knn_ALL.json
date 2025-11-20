@@ -1,0 +1,19 @@
+{
+  "feature_set": "ALL",
+  "model_type": "KNN",
+  "best_params": {
+    "n_neighbors": 6,
+    "weights": "uniform",
+    "metric": "minkowski",
+    "algorithm": "kd_tree",
+    "p": 1
+  },
+  "cv_accuracy": 0.9597222222222223,
+  "test_accuracy": 0.9666666666666667,
+  "n_trials": 100,
+  "train_shape": [
+    1440,
+    164
+  ],
+  "timestamp": "2025-11-20 10:24:41"
+}

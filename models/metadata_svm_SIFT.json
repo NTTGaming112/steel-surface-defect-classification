@@ -1,0 +1,17 @@
+{
+  "feature_set": "SIFT",
+  "model_type": "SVM",
+  "best_params": {
+    "kernel": "rbf",
+    "C": 1.8552093692475922,
+    "gamma": "auto"
+  },
+  "cv_accuracy": 0.9576388888888889,
+  "test_accuracy": 0.975,
+  "n_trials": 100,
+  "train_shape": [
+    1440,
+    100
+  ],
+  "timestamp": "2025-11-20 10:44:24"
+}

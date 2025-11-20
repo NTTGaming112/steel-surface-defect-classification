@@ -1,0 +1,20 @@
+{
+  "feature_set": "LBP",
+  "model_type": "DecisionTree",
+  "best_params": {
+    "max_depth": 30,
+    "min_samples_split": 16,
+    "min_samples_leaf": 10,
+    "criterion": "gini",
+    "splitter": "best",
+    "max_features": null
+  },
+  "cv_accuracy": 0.7965277777777778,
+  "test_accuracy": 0.7666666666666667,
+  "n_trials": 100,
+  "train_shape": [
+    1440,
+    64
+  ],
+  "timestamp": "2025-11-20 10:23:43"
+}
