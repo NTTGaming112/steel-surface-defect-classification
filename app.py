@@ -99,111 +99,110 @@ def predict_defect(image):
         return f"❌ Lỗi: {str(e)}", None, str(e)
 
 custom_css = """
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-/* --- CẤU HÌNH CHUNG --- */
-body {
-    font-family: 'Inter', sans-serif !important;
+* {
+    font-family: 'Poppins', sans-serif !important;
 }
 
 .gradio-container {
-    max-width: 1280px !important;
+    max-width: 1400px !important;
     margin: 0 auto !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    padding: 2rem !important;
 }
 
-/* --- HEADER (Thích ứng Sáng/Tối) --- */
+/* --- HEADER MODERN --- */
 .header-container {
     text-align: center;
-    padding: 2rem;
-    border-radius: 16px;
-    margin-bottom: 1.5rem;
-    /* Sử dụng biến màu của Gradio để tự thích ứng */
-    background: var(--background-fill-secondary); 
-    border: 1px solid var(--border-color-primary);
-    box-shadow: var(--shadow-drop);
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
+    border: none;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    backdrop-filter: blur(10px);
 }
 
 .header-title {
-    font-size: 2.2rem;
+    font-size: 2.8rem;
     font-weight: 800;
-    margin-bottom: 0.5rem;
-    background: -webkit-linear-gradient(45deg, #3b82f6, #8b5cf6);
+    margin-bottom: 0.8rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
+    text-transform: uppercase;
 }
 
 .header-subtitle {
-    font-size: 1.1rem;
-    color: var(--body-text-color-subdued);
+    font-size: 1.2rem;
+    color: #64748b;
+    font-weight: 500;
 }
 
-/* --- INFO CARDS --- */
-.info-card {
-    background: var(--background-fill-secondary);
+/* --- MAIN CONTENT CARDS --- */
+.input-card, .output-card {
+    background: var(--background-fill-primary);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    height: 100%;
     border: 1px solid var(--border-color-primary);
-    border-radius: 12px;
-    padding: 1.5rem;
-    transition: transform 0.2s;
 }
 
-.info-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--primary-500);
-}
-
-.card-icon {
-    font-size: 2rem;
-    margin-bottom: 0.8rem;
-}
-
-.card-title {
+.section-title {
+    font-size: 1.4rem;
     font-weight: 700;
     color: var(--body-text-color);
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.card-desc {
-    color: var(--body-text-color-subdued);
-    font-size: 0.95rem;
+.section-title:before {
+    content: '';
+    width: 4px;
+    height: 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 2px;
 }
 
-/* --- RESULT BOX STYLING --- */
-/* Class này dùng cho HTML Output từ Python */
+/* --- RESULT BOX MODERN --- */
 .result-card {
     background: var(--background-fill-secondary);
-    border: 1px solid var(--border-color-primary);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: var(--shadow-drop);
+    border: 2px solid var(--border-color-primary);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.15);
 }
 
 .result-title-label {
-    color: var(--body-text-color-subdued);
-    font-size: 0.9rem;
+    color: #94a3b8;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    font-weight: 600;
 }
 
 .result-defect-name {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 800;
-    margin: 10px 0;
-    /* Màu mặc định cho Light mode */
-    color: #1e40af; 
-}
-
-/* Override màu cho Dark mode */
-.dark .result-defect-name {
-    color: #60a5fa;
+    margin: 15px 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -1px;
 }
 
 .confidence-badge {
     display: inline-block;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 1rem;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .bar-container {
@@ -227,15 +226,68 @@ body {
     color: var(--body-text-color-subdued);
 }
 
-/* --- BUTTON --- */
+/* --- BUTTONS MODERN --- */
 #predict-btn {
-    background: linear-gradient(90deg, #2563eb, #4f46e5);
-    border: none;
-    color: white;
-    transition: all 0.3s;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none !important;
+    color: white !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+    padding: 1rem 2rem !important;
+    border-radius: 15px !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4) !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
+
 #predict-btn:hover {
-    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6) !important;
+}
+
+#predict-btn:active {
+    transform: translateY(0);
+}
+
+button[variant="secondary"] {
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%) !important;
+    border: 2px solid #cbd5e1 !important;
+    color: #475569 !important;
+    font-weight: 600 !important;
+    border-radius: 12px !important;
+}
+
+button[variant="secondary"]:hover {
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%) !important;
+    border-color: #94a3b8 !important;
+}
+
+/* --- IMAGE INPUT STYLING --- */
+#img_input {
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    border: 3px dashed #cbd5e1 !important;
+}
+
+#img_input:hover {
+    border-color: #667eea !important;
+}
+
+/* --- TABS STYLING --- */
+.tabs {
+    background: transparent !important;
+}
+
+.tab-nav button {
+    font-weight: 600 !important;
+    color: #64748b !important;
+    border-radius: 12px 12px 0 0 !important;
+}
+
+.tab-nav button.selected {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
 }
 """
 
@@ -274,9 +326,12 @@ def predict_wrapper(image):
     # HTML Structure sử dụng các class đã định nghĩa trong CSS
     html_content = f"""
     <div class="result-card">
-        <div style="text-align: center; margin-bottom: 25px;">
-            <div class="result-title-label">Kết quả phân tích</div>
-            <div class="result-defect-name">{defect_type}</div>
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div style="color: var(--body-text-color-subdued); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; 
+                        font-weight: 700; margin-bottom: 15px;">Kết quả phân tích</div>
+            <div style="font-size: 3rem; font-weight: 800; margin: 15px 0; color: var(--body-text-color); letter-spacing: -1px;">
+                {defect_type}
+            </div>
             
             <style>
                 .dark .dynamic-badge {{ color: {dark_badge_color} !important; border-color: {dark_badge_color} !important; }}
@@ -286,23 +341,28 @@ def predict_wrapper(image):
             </div>
         </div>
         
-        <div style="border-top: 1px solid var(--border-color-primary); padding-top: 20px;">
-            <h4 style="margin-bottom: 15px; color: var(--body-text-color-subdued);">Chi tiết Top 3:</h4>
+        <div style="border-top: 2px solid var(--border-color-primary); padding-top: 20px;">
+            <h4 style="margin-bottom: 20px; color: var(--body-text-color); font-weight: 700; font-size: 1.1rem;">📈 Chi tiết Top 3:</h4>
     """
     
     for i, pred in enumerate(top3):
         width = float(pred['Xác suất'].strip('%'))
-        # Màu thanh bar: Top 1 màu xanh chủ đạo, còn lại màu xám
-        bar_color = "var(--primary-500)" if i == 0 else "var(--neutral-400)"
+        # Màu thanh bar gradient
+        if i == 0:
+            bar_color = "#667eea"  # Top 1: Tím
+        elif i == 1:
+            bar_color = "#764ba2"  # Top 2: Tím đậm
+        else:
+            bar_color = "#94a3b8"  # Top 3: Xám
         
         html_content += f"""
         <div class="prediction-row">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-                <span class="pred-label">{pred['Loại lỗi']}</span>
-                <span class="pred-score">{pred['Xác suất']}</span>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; align-items: center;">
+                <span style="font-weight: 700; color: var(--body-text-color); font-size: 1rem;">{pred['Loại lỗi']}</span>
+                <span style="font-weight: 700; color: #667eea; font-size: 1.1rem;">{pred['Xác suất']}</span>
             </div>
-            <div class="bar-container">
-                <div style="background: {bar_color}; width: {width}%; height: 100%; border-radius: 5px;"></div>
+            <div style="background: var(--border-color-primary); height: 12px; border-radius: 6px; overflow: hidden;">
+                <div style="background: linear-gradient(90deg, {bar_color}, {bar_color}); width: {width}%; height: 100%; border-radius: 6px; transition: width 0.5s;"></div>
             </div>
         </div>
         """
@@ -315,81 +375,135 @@ def predict_wrapper(image):
 # 4. GIAO DIỆN GRADIO
 # ============================================================================
 
-# Sử dụng theme Soft có sẵn hỗ trợ tốt Dark Mode
+# Theme hiện đại với màu gradient tím
 theme = gr.themes.Soft(
-    primary_hue="blue",
-    secondary_hue="slate",
-).set(
-    body_background_fill="var(--background-fill-primary)",
-    block_background_fill="var(--background-fill-secondary)"
+    primary_hue=gr.themes.colors.purple,
+    secondary_hue=gr.themes.colors.slate,
+    font=("Poppins", "sans-serif")
 )
 
 with gr.Blocks(title="Steel Defect AI", theme=theme, css=custom_css) as demo:
     
-    # --- Header ---
+    # --- Header Modern ---
     with gr.Row(elem_classes="header-container"):
         with gr.Column():
             gr.HTML("""
             <div style="text-align: center;">
-                <div style="font-size: 3rem; margin-bottom: 10px;">🏭</div>
-                <div class="header-title">AI NHẬN DIỆN LỖI THÉP</div>
-                <div class="header-subtitle">Phát hiện lỗi bề mặt thép cán nóng</div>
+                <div style="font-size: 4rem; margin-bottom: 15px; 
+                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                            -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    🏭
+                </div>
+                <div class="header-title">Steel Defect Detection AI</div>
+                <div class="header-subtitle">🔍 Phát hiện khuyết tật bề mặt thép bằng Machine Learning</div>
+                <div style="margin-top: 15px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                    <span style="background: rgba(102, 126, 234, 0.1); padding: 8px 20px; border-radius: 20px; 
+                                 color: #667eea; font-weight: 600; font-size: 0.9rem;">⚡ SVM Model</span>
+                    <span style="background: rgba(118, 75, 162, 0.1); padding: 8px 20px; border-radius: 20px; 
+                                 color: #764ba2; font-weight: 600; font-size: 0.9rem;">🎯 SIFT + LBP Features</span>
+                    <span style="background: rgba(16, 185, 129, 0.1); padding: 8px 20px; border-radius: 20px; 
+                                 color: #10b981; font-weight: 600; font-size: 0.9rem;">📊 NEU-DET Dataset</span>
+                </div>
             </div>
             """)
-
-    gr.Markdown("---")
 
     # --- Main Content ---
     with gr.Row():
         # Cột Trái: Input
-        with gr.Column(scale=4):
-            gr.Markdown("### 1. Hình ảnh đầu vào")
-            with gr.Group():
-                img_input = gr.Image(
-                    type="pil", 
-                    label="Tải ảnh lên", 
-                    height=380,
-                    sources=["upload", "clipboard"],
-                    elem_id="img_input"
-                )
-                
-                with gr.Row():
-                    clear_btn = gr.Button("🗑️ Xóa", variant="secondary")
-                    predict_btn = gr.Button("🚀 PHÂN TÍCH NGAY", variant="primary", size="lg", elem_id="predict-btn")
+        with gr.Column(scale=5, elem_classes="input-card"):
+            gr.HTML('<div class="section-title">📤 Tải ảnh lên</div>')
+            
+            img_input = gr.Image(
+                type="pil", 
+                label="", 
+                height=420,
+                sources=["upload", "clipboard"],
+                elem_id="img_input"
+            )
+            
+            gr.HTML("""
+            <div style="margin: 15px 0; padding: 15px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); 
+                        border-left: 4px solid #f59e0b; border-radius: 12px;">
+                <div style="font-weight: 600; color: #92400e; margin-bottom: 5px;">💡 Hướng dẫn:</div>
+                <div style="color: #78350f; font-size: 0.9rem;">
+                    • Upload ảnh khuyết tật thép<br>
+                    • Kích thước đề xuất: 200x200px
+                </div>
+            </div>
+            """)
+            
+            with gr.Row():
+                clear_btn = gr.Button("🗑️ Xóa ảnh", variant="secondary", size="lg")
+                predict_btn = gr.Button("🚀 Phân tích ngay", variant="primary", size="lg", elem_id="predict-btn")
 
         # Cột Phải: Output
-        with gr.Column(scale=5):
-            gr.Markdown("### 2. Kết quả phân tích")
+        with gr.Column(scale=6, elem_classes="output-card"):
+            gr.HTML('<div class="section-title">📊 Kết quả phân tích</div>')
             
             with gr.Tabs():
-                with gr.TabItem("📊 Dashboard"):
+                with gr.TabItem("🎯 Dashboard"):
                     result_html = gr.HTML(
-                        label="Kết quả",
+                        label="",
                         value="""
-                        <div style='text-align: center; padding: 60px; color: var(--body-text-color-subdued); 
-                                    border: 2px dashed var(--border-color-primary); border-radius: 12px;'>
-                            <div style='font-size: 2rem; margin-bottom: 10px;'>Waiting...</div>
-                            <div>Vui lòng tải ảnh lên và nhấn nút Phân Tích</div>
+                        <div style='text-align: center; padding: 80px 40px; 
+                                    background: var(--background-fill-secondary);
+                                    border: 3px dashed var(--border-color-primary); border-radius: 20px;'>
+                            <div style='font-size: 4rem; margin-bottom: 20px; opacity: 0.3;'>⏳</div>
+                            <div style='font-size: 1.8rem; font-weight: 700; color: var(--body-text-color); margin-bottom: 10px;'>
+                                Chờ phân tích...
+                            </div>
+                            <div style='color: var(--body-text-color-subdued); font-size: 1rem;'>
+                                Vui lòng tải ảnh lên và nhấn <strong>Phân tích ngay</strong>
+                            </div>
                         </div>
                         """
                     )
                 
-                with gr.TabItem("🖼️ Xử lý ảnh"):
-                    processed_output = gr.Image(label="Ảnh sau khi qua bộ lọc", interactive=False)
+                with gr.TabItem("🖼️ Tiền xử lý"):
+                    processed_output = gr.Image(label="", interactive=False, height=400)
                 
-                with gr.TabItem("📝 JSON"):
-                    output_json = gr.JSON(label="Raw Data")
+                with gr.TabItem("📋 Raw Data"):
+                    output_json = gr.JSON(label="")
 
-    # --- Footer ---
-    gr.Markdown("---")
-    gr.Markdown(
-        """
-        <div style="text-align: center; color: var(--body-text-color-subdued); opacity: 0.8;">
-            © 2024 NEU Project. All rights reserved.<br>
-            Model trained on NEU-DET Dataset.
+    # --- Info Cards ---
+    gr.HTML("""
+    <div style="margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+        <div style="background: var(--background-fill-primary); padding: 25px; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border: 1px solid var(--border-color-primary);">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">🎯</div>
+            <div style="font-weight: 700; font-size: 1.1rem; color: var(--body-text-color); margin-bottom: 5px;">98.33% Accuracy</div>
+            <div style="color: var(--body-text-color-subdued); font-size: 0.9rem;">Độ chính xác test set</div>
         </div>
-        """
-    )
+        <div style="background: var(--background-fill-primary); padding: 25px; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border: 1px solid var(--border-color-primary);">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">⚡</div>
+            <div style="font-weight: 700; font-size: 1.1rem; color: var(--body-text-color); margin-bottom: 5px;">SVM Linear</div>
+            <div style="color: var(--body-text-color-subdued); font-size: 0.9rem;">Support Vector Machine</div>
+        </div>
+        <div style="background: var(--background-fill-primary); padding: 25px; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border: 1px solid var(--border-color-primary);">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">🔍</div>
+            <div style="font-weight: 700; font-size: 1.1rem; color: var(--body-text-color); margin-bottom: 5px;">SIFT + LBP</div>
+            <div style="color: var(--body-text-color-subdued); font-size: 0.9rem;">164 combined features</div>
+        </div>
+        <div style="background: var(--background-fill-primary); padding: 25px; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border: 1px solid var(--border-color-primary);">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">📊</div>
+            <div style="font-weight: 700; font-size: 1.1rem; color: var(--body-text-color); margin-bottom: 5px;">6 Classes</div>
+            <div style="color: var(--body-text-color-subdued); font-size: 0.9rem;">NEU-DET Dataset</div>
+        </div>
+    </div>
+    """)
+    
+    # --- Footer ---
+    gr.HTML("""
+    <div style="margin-top: 3rem; padding: 2rem; text-align: center; 
+                background: var(--background-fill-primary); border-radius: 20px; backdrop-filter: blur(10px);
+                box-shadow: 0 8px 25px rgba(0,0,0,0.1); border: 1px solid var(--border-color-primary);">
+        <div style="color: var(--body-text-color); font-size: 1rem; margin-bottom: 8px; font-weight: 700;">
+            Steel Surface Defect Detection AI
+        </div>
+        <div style="color: var(--body-text-color-subdued); font-size: 0.9rem;">
+            © 2025 NEU-DET Project | Trained on NEU Surface Defect Database
+        </div>
+    </div>
+    """)
 
     # --- Events ---
     predict_btn.click(
@@ -402,10 +516,17 @@ with gr.Blocks(title="Steel Defect AI", theme=theme, css=custom_css) as demo:
     clear_btn.click(
         lambda: (
             None, 
-            """<div style='text-align: center; padding: 60px; color: var(--body-text-color-subdued); 
-               border: 2px dashed var(--border-color-primary); border-radius: 12px;'>
-               <div style='font-size: 2rem; margin-bottom: 10px;'>Ready</div>
-               <div>Đã làm mới dữ liệu</div></div>""", 
+            """<div style='text-align: center; padding: 80px 40px; 
+                        background: var(--background-fill-secondary);
+                        border: 3px dashed var(--border-color-primary); border-radius: 20px;'>
+                    <div style='font-size: 4rem; margin-bottom: 20px; opacity: 0.5;'>✨</div>
+                    <div style='font-size: 1.8rem; font-weight: 700; color: #10b981; margin-bottom: 10px;'>
+                        Đã làm mới!
+                    </div>
+                    <div style='color: var(--body-text-color-subdued); font-size: 1rem;'>
+                        Sẵn sàng phân tích ảnh mới
+                    </div>
+               </div>""", 
             None, 
             None
         ),
