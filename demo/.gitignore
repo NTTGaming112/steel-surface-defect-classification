@@ -1,0 +1,35 @@
+# .gitignore
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Model checkpoints (optional - remove if you want to track models)
+# models/*.pt
+# models/*.pkl
+
+# Results and outputs
+checkpoints/*
+!checkpoints/.gitkeep
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Gradio
+flagged/
