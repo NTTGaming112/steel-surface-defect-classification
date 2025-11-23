@@ -1,152 +1,46 @@
-# Steel Surface Defect Detection
+# Steel Defect Detection AI
 
-Dự án phát hiện khuyết tật bề mặt thép sử dụng Computer Vision và Machine Learning với nhiều mô hình khác nhau.
+Hệ thống phát hiện và phân loại lỗi bề mặt thép sử dụng YOLO11 + SVM
 
-## 📁 Cấu trúc dự án
+## 📁 Cấu trúc thư mục
 
 ```
-project/
-├── data/              # Raw dataset (NEU-DET)
-├── datasets/          # Processed datasets (YOLO format)
-├── models/            # Traditional ML models (KNN, SVM, RF)
-├── checkpoints/       # YOLO model weights
-├── demo/              # Gradio web application
-├── scripts/           # Training và processing scripts
-├── notebooks/         # Jupyter notebooks (EDA, experiments)
-├── docs/              # Documentation
-└── results/           # Experiment results & visualizations
+demo/
+├── app.py                      # Main application
+├── models/                     # Trained models & checkpoints
+│   ├── best.pt                # YOLO detection model
+│   ├── best_svm_SIFT_param1.pkl
+│   ├── sift_extractor_svm_param1.pkl
+│   └── scaler_svm_SIFT_param1.pkl
+├── src/
+│   ├── core/                  # Core logic
+│   │   ├── config.py         # Configuration
+│   │   ├── models.py         # Model management
+│   │   ├── preprocessing.py  # Image preprocessing
+│   │   ├── prediction.py     # Prediction logic
+│   │   └── utils.py          # SIFT extractor
+│   └── ui/                    # User interface
+│       └── ui_components.py  # UI components & styling
+└── checkpoints/               # For saving results (optional)
 ```
 
-## 📋 Mô tả
-
-Hệ thống phát hiện và phân loại 6 loại khuyết tật trên bề mặt thép:
-
-- Crazing
-- Inclusion
-- Patches
-- Pitted Surface
-- Rolled-in Scale
-- Scratches
-
-## 🎯 Dataset
-
-**NEU Surface Defect Database**
-
-- Training: 1440 ảnh (240 ảnh/class × 6 classes)
-- Validation: 360 ảnh (60 ảnh/class × 6 classes)
-- Tổng: 1800 ảnh
-- Kích thước: 200x200 pixels (grayscale sau preprocessing)
-
-## 🚀 Models
-
-### 1. SVM (Support Vector Machine)
-
-- **Test Accuracy**: 98.33%
-- **CV Accuracy**: 97.43%
-- **Features**: SIFT + LBP (164 features)
-- **Best Params**: kernel=linear, C=0.122
-- **File**: `cv-project.ipynb`
-
-### 2. Decision Tree
-
-- **Test Accuracy**: 96.39%
-- **CV Accuracy**: 95.49%
-- **Features**: SIFT + LBP (164 features)
-- **Best Params**: max_depth=28, criterion=entropy, min_samples_split=15
-- **File**: `cv-project-decisiontree.ipynb`
-
-### 3. KNN (K-Nearest Neighbors)
-
-- **Test Accuracy**: 96.67%
-- **CV Accuracy**: 95.97%
-- **Features**: SIFT + LBP (164 features)
-- **Best Params**: n_neighbors=6, metric=minkowski (p=1), algorithm=kd_tree
-- **File**: `cv-project-knn.ipynb`
-
-## 🔧 Feature Extraction
-
-### SIFT (Scale-Invariant Feature Transform)
-
-- Bag of Visual Words với vocab_size=100
-- MiniBatchKMeans clustering
-
-### LBP (Local Binary Pattern)
-
-- 8 points, radius 1
-- 64-bin histogram
-
-### Preprocessing
-
-- CLAHE enhancement (clipLimit=2.0, tileGridSize=8x8)
-- Resize to 200x200
-- Grayscale conversion
-
-## 📦 Cài đặt
-
-```bash
-pip install opencv-python scikit-learn scikit-image gradio joblib pillow numpy pandas matplotlib seaborn tqdm optuna
-```
-
-## 🎮 Sử dụng
-
-### 1. Training Models
-
-Chạy các notebook để train models:
-
-```bash
-jupyter notebook cv-project.ipynb          # SVM
-jupyter notebook cv-project-decisiontree.ipynb  # Decision Tree
-jupyter notebook cv-project-knn.ipynb      # KNN
-```
-
-### 2. Web Demo
-
-Chạy Gradio web interface:
+## 🚀 Cách chạy
 
 ```bash
 python app.py
 ```
 
-Truy cập: http://127.0.0.1:7860
+## 🔧 Pipeline
 
-## 🎨 Web Interface Features
+1. **YOLO11 Detection** - Phát hiện vùng lỗi
+2. **SVM Classification** - Phân loại loại lỗi (6 classes)
+3. **SIFT Features** - Trích xuất đặc trưng
 
-- 📤 Upload ảnh defect
-- 🔍 Hiển thị ảnh sau tiền xử lý
-- 🎯 Top-3 predictions với confidence scores
-- 📊 Detailed results table
-- 🎨 Custom gradient theme
+## 📊 Classes
 
-## 📊 Performance Comparison
-
-| Model         | CV Accuracy | Test Accuracy | N Trials | Best Params                     |
-| ------------- | ----------- | ------------- | -------- | ------------------------------- |
-| SVM           | 97.43%      | **98.33%**    | 100      | kernel=linear, C=0.122          |
-| KNN           | 95.97%      | 96.67%        | 100      | k=6, metric=minkowski (p=1)     |
-| Decision Tree | 95.49%      | 96.39%        | 100      | max_depth=28, criterion=entropy |
-
-**Note**:
-
-- Tất cả models sử dụng combined features (SIFT BoVW 100 + LBP 64 = 164 features)
-- Training set: 1440 samples, Test set: 360 samples
-- Hyperparameter optimization: Optuna với TPE Sampler
-
-## 🔬 Hyperparameter Optimization
-
-Sử dụng **Optuna** với:
-
-- 100 trials cho mỗi feature set
-- 3-fold cross-validation
-- TPE Sampler
-- Automatic checkpoint saving
-
-## 📝 Notes
-
-- Models được train với scikit-learn 1.7.2
-- Runtime có thể có version warning (1.6.1)
-- Tất cả models sử dụng StandardScaler
-- SIFT extractor được save để inference
-
-## 📄 License
-
-MIT License
+- Crazing
+- Inclusion
+- Patches
+- Pitted_surface
+- Rolled-in_scale
+- Scratches

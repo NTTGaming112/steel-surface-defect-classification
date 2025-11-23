@@ -1,0 +1,19 @@
+{
+  "feature_set": "SIFT_param2",
+  "feature_params": {
+    "vocab_size": 200
+  },
+  "model_type": "SVM",
+  "best_params": {
+    "kernel": "linear",
+    "C": 24.81040974867808
+  },
+  "cv_accuracy": 0.9499999999999998,
+  "test_accuracy": 0.9722222222222222,
+  "n_trials": 100,
+  "train_shape": [
+    1440,
+    200
+  ],
+  "timestamp": "2025-11-22 01:37:16"
+}
