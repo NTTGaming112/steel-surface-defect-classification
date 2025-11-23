@@ -2,6 +2,21 @@
 
 Dự án phát hiện khuyết tật bề mặt thép sử dụng Computer Vision và Machine Learning với nhiều mô hình khác nhau.
 
+## 📁 Cấu trúc dự án
+
+```
+project/
+├── data/              # Raw dataset (NEU-DET)
+├── datasets/          # Processed datasets (YOLO format)
+├── models/            # Traditional ML models (KNN, SVM, RF)
+├── checkpoints/       # YOLO model weights
+├── demo/              # Gradio web application
+├── scripts/           # Training và processing scripts
+├── notebooks/         # Jupyter notebooks (EDA, experiments)
+├── docs/              # Documentation
+└── results/           # Experiment results & visualizations
+```
+
 ## 📋 Mô tả
 
 Hệ thống phát hiện và phân loại 6 loại khuyết tật trên bề mặt thép:
