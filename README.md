@@ -6,15 +6,13 @@ Dự án phát hiện khuyết tật bề mặt thép sử dụng Computer Visio
 
 ```
 project/
-├── data/              # Raw dataset (NEU-DET)
-├── datasets/          # Processed datasets (YOLO format)
-├── models/            # Traditional ML models (KNN, SVM, RF)
-├── checkpoints/       # YOLO model weights
-├── demo/              # Gradio web application
-├── scripts/           # Training và processing scripts
-├── notebooks/         # Jupyter notebooks (EDA, experiments)
-├── docs/              # Documentation
-└── results/           # Experiment results & visualizations
+├── data/              # Dữ liệu thô (NEU-DET)
+├── models/            # Các mô hình ML đã train (SVM, RF, KNN)
+├── checkpoints/       # Trọng số của các mô hình
+├── demo/              # Ứng dụng web Gradio
+├── notebooks/         # Jupyter notebooks (EDA, thử nghiệm)
+├── docs/              # Tài liệu
+└── README.md
 ```
 
 ## 📋 Mô tả
@@ -39,71 +37,54 @@ Hệ thống phát hiện và phân loại 6 loại khuyết tật trên bề m�
 
 ## 🚀 Models
 
-### 1. SVM (Support Vector Machine)
+Chi tiết về quá trình huấn luyện và kết quả của từng mô hình có trong các notebooks tương ứng:
 
-- **Test Accuracy**: 98.33%
-- **CV Accuracy**: 97.43%
-- **Features**: SIFT + LBP (164 features)
-- **Best Params**: kernel=linear, C=0.122
-- **File**: `cv-project.ipynb`
+- **SVM (Support Vector Machine)**: `notebooks/support-vector-machine.ipynb`
+- **Random Forest**: `notebooks/random-forest.ipynb`
+- **KNN (K-Nearest Neighbors)**: `notebooks/k-nearest-neighbor.ipynb`
 
-### 2. Decision Tree
-
-- **Test Accuracy**: 96.39%
-- **CV Accuracy**: 95.49%
-- **Features**: SIFT + LBP (164 features)
-- **Best Params**: max_depth=28, criterion=entropy, min_samples_split=15
-- **File**: `cv-project-decisiontree.ipynb`
-
-### 3. KNN (K-Nearest Neighbors)
-
-- **Test Accuracy**: 96.67%
-- **CV Accuracy**: 95.97%
-- **Features**: SIFT + LBP (164 features)
-- **Best Params**: n_neighbors=6, metric=minkowski (p=1), algorithm=kd_tree
-- **File**: `cv-project-knn.ipynb`
+Kết quả dưới đây là ví dụ về hiệu suất tốt nhất đạt được trong các thử nghiệm.
 
 ## 🔧 Feature Extraction
 
 ### SIFT (Scale-Invariant Feature Transform)
 
-- Bag of Visual Words với vocab_size=100
-- MiniBatchKMeans clustering
+- Sử dụng Bag of Visual Words với các kích thước vocabulary khác nhau (ví dụ: 100, 200).
+- Dùng MiniBatchKMeans để tạo vocabulary.
 
 ### LBP (Local Binary Pattern)
 
-- 8 points, radius 1
-- 64-bin histogram
+- Thử nghiệm với các phương pháp LBP khác nhau (`default`, `uniform`).
+- Trích xuất histogram từ ảnh LBP.
 
 ### Preprocessing
 
-- CLAHE enhancement (clipLimit=2.0, tileGridSize=8x8)
-- Resize to 200x200
-- Grayscale conversion
+- Cải thiện độ tương phản với CLAHE (clipLimit=2.0, tileGridSize=8x8).
+- Thay đổi kích thước ảnh về 200x200.
+- Chuyển đổi sang ảnh xám.
 
 ## 📦 Cài đặt
 
 ```bash
-pip install opencv-python scikit-learn scikit-image gradio joblib pillow numpy pandas matplotlib seaborn tqdm optuna
+pip install -r requirements.txt
 ```
 
 ## 🎮 Sử dụng
 
 ### 1. Training Models
 
-Chạy các notebook để train models:
+Mở và chạy các notebooks trong thư mục `notebooks/` để huấn luyện lại các mô hình:
 
-```bash
-jupyter notebook cv-project.ipynb          # SVM
-jupyter notebook cv-project-decisiontree.ipynb  # Decision Tree
-jupyter notebook cv-project-knn.ipynb      # KNN
-```
+- `support-vector-machine.ipynb`
+- `random-forest.ipynb`
+- `k-nearest-neighbor.ipynb`
 
 ### 2. Web Demo
 
-Chạy Gradio web interface:
+Để chạy ứng dụng demo, di chuyển vào thư mục `demo` và chạy file `app.py`:
 
 ```bash
+cd demo
 python app.py
 ```
 
@@ -111,19 +92,11 @@ Truy cập: http://127.0.0.1:7860
 
 ## 🎨 Web Interface Features
 
-- 📤 Upload ảnh defect
-- 🔍 Hiển thị ảnh sau tiền xử lý
-- 🎯 Top-3 predictions với confidence scores
-- 📊 Detailed results table
-- 🎨 Custom gradient theme
-
-## 📊 Performance Comparison
-
-| Model         | CV Accuracy | Test Accuracy | N Trials | Best Params                     |
-| ------------- | ----------- | ------------- | -------- | ------------------------------- |
-| SVM           | 97.43%      | **98.33%**    | 100      | kernel=linear, C=0.122          |
-| KNN           | 95.97%      | 96.67%        | 100      | k=6, metric=minkowski (p=1)     |
-| Decision Tree | 95.49%      | 96.39%        | 100      | max_depth=28, criterion=entropy |
+- 📤 Tải lên ảnh khuyết tật.
+- 🔍 Hiển thị ảnh sau khi tiền xử lý.
+- 🎯 3 dự đoán hàng đầu với điểm tin cậy.
+- 📊 Bảng kết quả chi tiết.
+- 🎨 Giao diện tùy chỉnh.
 
 **Note**:
 
@@ -135,15 +108,13 @@ Truy cập: http://127.0.0.1:7860
 
 Sử dụng **Optuna** với:
 
-- 100 trials cho mỗi feature set
+- 1000 trials cho mỗi feature set
 - 3-fold cross-validation
 - TPE Sampler
 - Automatic checkpoint saving
 
 ## 📝 Notes
 
-- Models được train với scikit-learn 1.7.2
-- Runtime có thể có version warning (1.6.1)
 - Tất cả models sử dụng StandardScaler
 - SIFT extractor được save để inference
 
