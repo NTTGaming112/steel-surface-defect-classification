@@ -26,13 +26,7 @@ wheels/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# Models and large files (root level only)
-/models/
-/checkpoints/
-
 # Data
-data/
-datasets/
 *.zip
 *.tar.gz
 
