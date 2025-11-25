@@ -1,0 +1,22 @@
+{
+  "feature_set": "LBP_param2",
+  "feature_params": {
+    "radius": 1,
+    "n_points": 8,
+    "method": "uniform"
+  },
+  "model_type": "SVM",
+  "best_params": {
+    "kernel": "rbf",
+    "C": 21.94365782109154,
+    "gamma": "auto"
+  },
+  "cv_accuracy": 0.9305555555555557,
+  "test_accuracy": 0.9138888888888889,
+  "n_trials": 1000,
+  "train_shape": [
+    1440,
+    11
+  ],
+  "timestamp": "2025-11-21 19:46:50"
+}

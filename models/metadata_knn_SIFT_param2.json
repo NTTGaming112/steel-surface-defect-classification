@@ -1,0 +1,20 @@
+{
+  "feature_set": "SIFT_param2",
+  "feature_params": {
+    "vocab_size": 200
+  },
+  "model_type": "KNN",
+  "best_params": {
+    "n_neighbors": 10,
+    "weights": "distance",
+    "metric": "manhattan"
+  },
+  "cv_accuracy": 0.8854166666666666,
+  "test_accuracy": 0.875,
+  "n_trials": 10,
+  "train_shape": [
+    1440,
+    200
+  ],
+  "timestamp": "2025-11-24 18:43:05"
+}

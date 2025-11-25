@@ -1,0 +1,22 @@
+{
+  "feature_set": "SIFT_param2",
+  "feature_params": {
+    "vocab_size": 200
+  },
+  "model_type": "RandomForest",
+  "best_params": {
+    "n_estimators": 155,
+    "max_depth": 15,
+    "min_samples_split": 6,
+    "min_samples_leaf": 1,
+    "max_features": "log2"
+  },
+  "cv_accuracy": 0.9819444444444446,
+  "test_accuracy": 0.9777777777777777,
+  "n_trials": 1000,
+  "train_shape": [
+    1440,
+    200
+  ],
+  "timestamp": "2025-11-21 21:13:42"
+}

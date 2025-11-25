@@ -1,0 +1,24 @@
+{
+  "feature_set": "LBP_param2",
+  "feature_params": {
+    "radius": 1,
+    "n_points": 8,
+    "method": "uniform"
+  },
+  "model_type": "RandomForest",
+  "best_params": {
+    "n_estimators": 50,
+    "max_depth": 19,
+    "min_samples_split": 4,
+    "min_samples_leaf": 1,
+    "max_features": "log2"
+  },
+  "cv_accuracy": 0.8944444444444445,
+  "test_accuracy": 0.875,
+  "n_trials": 1000,
+  "train_shape": [
+    1440,
+    11
+  ],
+  "timestamp": "2025-11-21 20:34:15"
+}

@@ -1,0 +1,22 @@
+{
+  "feature_set": "LBP_param1",
+  "feature_params": {
+    "radius": 1,
+    "n_points": 8,
+    "method": "default"
+  },
+  "model_type": "KNN",
+  "best_params": {
+    "n_neighbors": 6,
+    "weights": "distance",
+    "metric": "minkowski"
+  },
+  "cv_accuracy": 0.8743055555555556,
+  "test_accuracy": 0.925,
+  "n_trials": 10,
+  "train_shape": [
+    1440,
+    256
+  ],
+  "timestamp": "2025-11-24 18:43:01"
+}
